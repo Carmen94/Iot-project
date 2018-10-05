@@ -1,8 +1,46 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Trebuchet MS", Helvetica, Arial, sans-serif !important;
 }
 
 a {
-  color: #00B7FF;
+  color: #006A00;
+}
+
+button.form{
+  color: #fff;
+  background-color: #006A00;
+  border-color: #217a15;
+  padding: 5px 15px;
+}
+
+.login-form{
+  padding: 5px;
+}
+
+.loggin{
+  text-align: center;
+}
+
+.airsense-navbar{
+  background-color: #006A00;
+}
+
+.airsense-navbar ul{
+  list-style: none;
+}
+
+.airsense-navbar li{
+  margin:5px;
+}
+
+.airsense-navbar a{
+  padding: 15 px 5px;
+  color:#FFFFFF;
+  text-decoration: none;
+}
+
+.airsense-navbar a:hover{
+  text-decoration: none;
+  color:#2DB82D;
 }
