@@ -13,6 +13,7 @@
     "morgan": "~1.9.0",
     "pug": "2.0.0-beta11",
     "body-parser": "latest",
-    "mssql": "latest"
+    "mssql": "latest",
+    "aws-sdk": "*"
   }
 }
