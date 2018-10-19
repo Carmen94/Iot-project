@@ -7,8 +7,8 @@ a {
   color: #006A00;
 }
 
-button.form{
-  color: #fff;
+button{
+  color: #fff !important;
   background-color: #006A00;
   border-color: #217a15;
   padding: 5px 15px;
