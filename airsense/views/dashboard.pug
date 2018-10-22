@@ -1,6 +1,16 @@
 extends layout
 block content
+    title=title
     h1 Dashboard
+    div.container
+        div.row
+            div.col-lg-12.col
+                canvas(id="contaminantsChart")
+        div.row
+            div.col-lg-6
+                canvas(id="historyChart")
+            div.col-lg-6
+                canvas(id="comparisonChart")
     button(type="button" data-toggle="modal" data-target="#plants-modal") Recommended Plants
     //- Plants Modal
     div.modal.fade(id="plants-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true")

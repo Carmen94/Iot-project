@@ -4,42 +4,43 @@ var async = require('async');
 //Own modules
 var dynamoTable = require('../keyvalue.js');
 
-var airsense= new dynamoTable('airsense');
-airsense.init(function(){
-  console.log("Aisense starting...");
-});
+
+
+// var airsense= new dynamoTable('airsense');
+// airsense.init(function(){
+//   console.log("Aisense starting...");
+// });
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('login', { title: 'Airsense' });
 });
 
 router.get('/dashboard', function(req, res, next) {
-  res.render('dashboard', { title: 'Express' });
+  res.render('dashboard', { title: global.customerName+"'s dashboard" });
 });
 
 router.get('/main', function(req, res, next) {
-  res.render('main', { title: 'Express' });
+  res.render('main', { title: 'Airsense' });
 });
 
 router.post('/login',function(req,res){
   console.log("login");
-  res.render('main',{username:"Carmen"});
+  res.render('main',{username: "Welcome"+global.customerName+"!!!"});
 })
 
 router.get('/search/:id',function(req,res){
-  var id = req.params.id;
+  customerID = req.params.id;
   console.log('search/'+id);
   var sensorData = new Array(); 
   var queryID = function(callback){
-    airsense.query(id,function(err,data){
+    airsense.query(customerID,function(err,data){
       if (err) {
         console.log("Error in query app.js: "+err);
       } else if (data == null) {
         console.log("No results");    
-      } else {       
-       
+      } else {          
           sensorData.push(data);     
-            callback(undefined, sensorData);
+          callback(undefined, sensorData);
       }
     });
   }
