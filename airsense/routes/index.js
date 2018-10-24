@@ -15,8 +15,12 @@ router.get('/', function(req, res, next) {
   res.render('login', { title: 'Airsense' });
 });
 
-router.get('/dashboard', function(req, res, next) {
-  res.render('dashboard', { title: global.customerName+"'s dashboard" });
+router.get('/dashboard', function(req, res, next) {  
+  res.render('dashboard', { title: global.customerName+"'s dashboard",
+                            array:global.contaminantsArray,
+                            array1:global.historicsArray,
+                            array2:global.newArray
+                          });
 });
 
 router.get('/main', function(req, res, next) {
@@ -25,7 +29,7 @@ router.get('/main', function(req, res, next) {
 
 router.post('/login',function(req,res){
   console.log("login");
-  res.render('main',{username: "Welcome"+global.customerName+"!!!"});
+  res.render('main',{username: "Welcome "+global.customerName+"!!!"});
 })
 
 router.get('/search/:id',function(req,res){

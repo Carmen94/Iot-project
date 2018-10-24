@@ -10,6 +10,11 @@ var app = express();
 
 global.customerID=99;
 global.customerName="Carmen";
+// global.contaminantsArray=new Array();
+global.contaminantsArray = [6,7,8,10,0,0];
+global.historicsArray=[3.5,2,9,0,2,0];
+global.newArray=[7,7,7,7,7,8];
+// global.Array=new Array();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

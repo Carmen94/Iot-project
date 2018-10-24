@@ -1,11 +1,13 @@
 extends layout
 block content
-    title=title
     h1 Dashboard
     div.container
         div.row
             div.col-lg-12.col
                 canvas(id="contaminantsChart")
+        br
+        br
+        br
         div.row
             div.col-lg-6
                 canvas(id="historyChart")
@@ -48,3 +50,97 @@ block content
                         
                 div.modal-footer
                     button(type="button" data-dismiss="modal") Close
+    script.
+        console.log(#{array});
+        console.log(#{array1});
+        console.log(#{array2});
+        var contaminants=#{JSON.stringify(array)}
+        var historic=#{JSON.stringify(array1)}
+        var comparison=#{JSON.stringify(array2)}
+        var cChart = document.getElementById("contaminantsChart").getContext('2d');
+        var contaminantsChart = new Chart(cChart, {
+            type: 'bar',
+            data: {
+                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                datasets: [{
+                    label: '#PPM',
+                    data: contaminants,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+        var hChart = document.getElementById("historyChart").getContext('2d');
+        var myPieChart = new Chart(hChart, {
+        type: 'pie',
+        data: {
+            labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
+            datasets: [
+                {
+                    data: historic,
+                    backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
+                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+                }
+            ]
+        },
+        options: {
+            responsive: true
+        }
+        });
+        var comparisonChart = document.getElementById("comparisonChart").getContext('2d');
+        var comparison = new Chart(comparisonChart, {
+        type: 'line',
+        data: {
+            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            datasets: [{
+                label: "Inside",
+                data: comparison,
+                backgroundColor: [
+                'rgba(105, 0, 132, .2)',
+                ],
+                borderColor: [
+                'rgba(200, 99, 132, .7)',
+                ],
+                borderWidth: 2
+            },
+            {
+                label: "Outside",
+                data: [28, 48, 40, 19, 86, 27, 90],
+                backgroundColor: [
+                'rgba(0, 137, 132, .2)',
+                ],
+                borderColor: [
+                'rgba(0, 10, 130, .7)',
+                ],
+                borderWidth: 2
+            }
+            ]
+        },
+        options: {
+            responsive: true
+        }
+        });
