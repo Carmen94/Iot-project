@@ -4,12 +4,11 @@ var async = require('async');
 //Own modules
 var dynamoTable = require('../keyvalue.js');
 
-
-
 // var airsense= new dynamoTable('airsense');
 // airsense.init(function(){
 //   console.log("Aisense starting...");
 // });
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('login', { title: 'Airsense' });
@@ -18,18 +17,22 @@ router.get('/', function(req, res, next) {
 router.get('/dashboard', function(req, res, next) {  
   res.render('dashboard', { title: global.customerName+"'s dashboard",
                             array:global.contaminantsArray,
+                            arrayLabels:global.contaminantsLabels,
                             array1:global.historicsArray,
                             array2:global.newArray
                           });
 });
 
-router.get('/main', function(req, res, next) {
-  res.render('main', { title: 'Airsense' });
+router.get('/main', function(req, res, next) { 
+  res.render('main',{ username: global.customerName,
+                      email:global.customerEmail            
+            });
 });
 
 router.post('/login',function(req,res){
   console.log("login");
-  res.render('main',{username: "Welcome "+global.customerName+"!!!"});
+  res.render('main',{username: global.customerName,
+    email: global.customerEmail});
 })
 
 router.get('/search/:id',function(req,res){

@@ -1,3 +1,55 @@
 extends layout
 block content
-    h1=username
+    div.container.main
+        div.row
+            h2=username
+            br
+            .col-lg-4
+                table.main-table.table
+                    thead
+                        tr
+                            th Name
+                            th Image
+                            th Email
+                        tbody
+                            td=username
+                            td  
+                                img(src="/img/user.png" width="50" height="50")
+                            td=email
+        div.row
+            button(type="button" data-toggle="modal" data-target="#plants-modal") Recommended Plants
+            //- Plants Modal
+            div.modal.fade(id="plants-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true")
+                div.modal-dialog.modal-lg.modal-dialog-centered(role="document")   
+                    div.modal-content
+                        div.modal-header
+                        div.modal-body
+                            table.table-responsive.table.table-sm.table-striped(id="plants")
+                                thead
+                                    tr
+                                        th Plant
+                                        th Description
+                                        th Picture
+                                tbody
+                                    tr  
+                                        td Potus
+                                        td This is a plant
+                                        td Some picture
+                                    tr  
+                                        td Palmera de bambú
+                                        td This is a plant
+                                        td Some picture
+                                    tr  
+                                        td Flor de la paz
+                                        td This is a plant
+                                        td Some picture
+                                    tr  
+                                        td Lengua de tigre
+                                        td This is a plant
+                                        td Some picture
+                                    tr  
+                                        td Árbol de caucho
+                                        td This is a plant
+                                        td Some picture                        
+                        div.modal-footer
+                            button(type="button" data-dismiss="modal") Close

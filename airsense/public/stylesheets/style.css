@@ -7,6 +7,29 @@ a {
   color: #006A00;
 }
 
+.main h1{
+  color: #217a15;
+  text-shadow: 1px 3px 0 #969696, 1px 13px 5px #aba8a8, 8px 12px 12px rgba(30,164,9,0.7);
+  font-size: 60px;
+}
+
+.main h2{
+  color: #217a15;
+  text-shadow: 1px 3px 0 #969696, 1px 13px 5px #aba8a8, 8px 12px 12px rgba(30,164,9,0.7);
+  font-size: 40px;
+}
+
+.main label{
+  font-size: 20px;
+ 
+}
+
+.main input,label{
+  font-size: 20px;
+  color: #77a8a8;
+}
+
+
 button{
   color: #fff !important;
   background-color: #006A00;
@@ -43,4 +66,13 @@ button{
 .airsense-navbar a:hover{
   text-decoration: none;
   color:#2DB82D;
+}
+
+.main-table td,.main-table th{
+  width:100%;
+  font-size:20px; 
+}
+
+body{
+  background-image: url("../img/main.jpg");
 }
