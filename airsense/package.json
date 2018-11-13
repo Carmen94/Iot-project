@@ -17,5 +17,8 @@
     "aws-sdk": "*",
     "json": "latest",
     "async": "*"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
   }
 }
