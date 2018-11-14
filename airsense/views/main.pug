@@ -1,11 +1,11 @@
 extends layout
 block content
-    div.container.main
+    div.container-fluid.main
         div.row
             h2=username
             br
             .col-lg-4
-                table.main-table.table
+                table.main-table(id="user-table")
                     thead
                         tr
                             th Name
@@ -16,6 +16,8 @@ block content
                             td  
                                 img(src="/img/user.png" width="50" height="50")
                             td=email
+        br
+        br
         div.row
             button(type="button" data-toggle="modal" data-target="#plants-modal") Recommended Plants
             //- Plants Modal
@@ -33,23 +35,28 @@ block content
                                 tbody
                                     tr  
                                         td Potus
-                                        td This is a plant
-                                        td Some picture
+                                        td Es muy resistente y no requiere de grandes cuidados, por eso se utiliza ampliamente para decorar oficinas, centros comerciales y otros lugares públicos. Se adapta fácilmente a temperaturas de entre 17º y 30ºC. Sólo hay que regarla cuando notamos que la tierra está seca.
+                                        td 
+                                            img(src="/img/potus.jpg" width="200" height="200")
                                     tr  
                                         td Palmera de bambú
-                                        td This is a plant
-                                        td Some picture
+                                        td Esta palmera originaria de Asia puede llegar a crecer hasta 3 metros de altura. Se encarga de eliminar del aire formaldehído, xileno y amoníaco.
+                                        td
+                                           img(src="/img/palmera-bambu.jpg" width="200" height="200")
                                     tr  
                                         td Flor de la paz
-                                        td This is a plant
-                                        td Some picture
+                                        td Puede sobrevivir con poca luz y poca agua. Crece en temperaturas superiores a los 18ºC. Se recomienda mantenerla lejos de las corrientes de aire. Son plantas longevas. Su flor, en realidad, es una hoja que envuelve a las semillas.
+                                        td
+                                            img(src="/img/flor-paz.jpg" width="200" height="200")
                                     tr  
                                         td Lengua de tigre
-                                        td This is a plant
-                                        td Some picture
+                                        td Es muy usada en la decoración de interiores. Tiene la ventaja de sobrevivir en condiciones desfavorables. Si se la cultiva en exteriores puede aguantar temperaturas muy altas (incluso de 40ºC) y también muy bajas (-5ºC), siempre y cuando estos extremos sean esporádicos. Buena para eliminar benceno, xileno y tolueno, tricloroetileno y formaldehído.                                        td
+                                        td
+                                            img(src="/img/lengua-suegra.jpg" width="200" height="200")
                                     tr  
                                         td Árbol de caucho
-                                        td This is a plant
-                                        td Some picture                        
+                                        td En pocos años puede crecer muy rápido, así que debes tener en cuenta que es una planta que necesita espacio. Es eficaz para eliminar formaldehído del aire. También es muy resistente a las enfermedades. Y como tiene un índice elevado de transpiración ayuda a mantener la humedad en el ambiente.
+                                        td
+                                            img(src="/img/arbol-caucho.jpg" width="200" height="200")                       
                         div.modal-footer
                             button(type="button" data-dismiss="modal") Close

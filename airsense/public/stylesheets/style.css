@@ -14,7 +14,7 @@ a {
 }
 
 .main h2{
-  color: #217a15;
+  color: #90470a;
   text-shadow: 1px 3px 0 #969696, 1px 13px 5px #aba8a8, 8px 12px 12px rgba(30,164,9,0.7);
   font-size: 40px;
 }
@@ -68,6 +68,11 @@ button{
   color:#2DB82D;
 }
 
+.div-navbar{
+  float: right;
+  padding: 10px;
+}
+
 .main-table td,.main-table th{
   width:100%;
   font-size:20px; 
@@ -75,4 +80,20 @@ button{
 
 body{
   background-image: url("../img/main.jpg");
+}
+
+#user-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #006A00;
+  color: white;
+}
+
+#user-table table, #user-table th, #user-table td {
+  border: .5px solid black;
+}
+
+#plants td{
+  width:250px;
 }

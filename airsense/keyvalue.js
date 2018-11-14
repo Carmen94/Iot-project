@@ -27,7 +27,7 @@ keyvalue.prototype.init = function(whendone) {
    * 
    * Callback returns a list of objects with keys "inx" and "value"
    */  
-  keyvalue.prototype.query = function(search, callback,items) {                     
+  keyvalue.prototype.queryAirsense = function(search,callback,items) {                     
     var params = {       
     TableName : this.tableName,        
     KeyConditionExpression: "UserID = :UserID",          
@@ -56,6 +56,33 @@ keyvalue.prototype.init = function(whendone) {
 });   
 };
 
+keyvalue.prototype.userLogin = function(email,callback){
+    var user;
+    var params = {       
+        TableName : this.tableName,        
+        KeyConditionExpression: "email = :email",          
+        ExpressionAttributeValues: {
+            ":email": {"S": email}
+        }            
+        };      
+        db.query(params,function(err,data){      
+            if (err) {
+                console.error(err);
+            } else {                        
+                if(data.Count>0){                                     
+                    data.Items.forEach(function(item) {                            
+                            user = {
+                            "Email":item.email.S,
+                            "Name": item.name.S,
+                            "Password": item.password.S,
+                            "UserID": item.userID.S
+                        }                                                                   
+                    });               
+                }                  
+                callback(err,user);
+        }             
+    });  
+};
 
 
 module.exports = keyvalue;
