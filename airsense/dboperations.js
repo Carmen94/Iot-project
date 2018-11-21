@@ -8,15 +8,16 @@ var users;
 function dboperations() { 
     airsense= new dynamoTable('airsense');
     users= new dynamoTable('users');
+    return true;
 };
 
 dboperations.prototype.GetUserInformation = function(email,callback){   
     users.init(function(){
-        console.log("Checking user...");      
+        console.log("Checking user...");
     });
     users.userLogin(email,function(err,data){
         if(err){
-            callback(err);
+            callback("err");
         }
         callback(null,data);
     });  
@@ -29,9 +30,9 @@ dboperations.prototype.GetContaminants = function(){
     customerID = global.customerID;
     airsense.queryAirsense(customerID,function(err,data){
         if (err) {
-        console.log("Error in query dboperation.js: "+err);
+            return "Error in query dboperation.js.";
         } else if (data == null) {
-        console.log("No results");    
+            return "No results";    
         } else {                  
             data.forEach(function(element) {     
             switch(element.Type){

@@ -6,18 +6,24 @@ var db = new AWS.DynamoDB();
 
 function keyvalue(table) { 
     this.tableName = table;
-  };
+    return true;
+};
 
-keyvalue.prototype.init = function(whendone) {     
+keyvalue.prototype.init = function() {     
     var self = this;
     var params = {
         TableName: this.tableName 
     };
     db.describeTable(params, function(err, data) {
-        if (err) console.log(err, err.stack);
-        else     console.log("The table: "+data.Table.TableName+" is: "+data.Table.TableStatus);           // successful response
+        if (err) {
+            return err;              
+        }           
+        else   {
+            console.log("The table: "+data.Table.TableName+" is: "+data.Table.TableStatus);           // successful response            
+            return "ACTIVE";
+        }         
       });
-    whendone();
+  
   };
 
    /**
@@ -38,7 +44,7 @@ keyvalue.prototype.init = function(whendone) {
     var items=[];
     db.query(params,function(err,data){            
         if (err) {
-            console.error(err);
+            return "Error in query";
         } else {                        
             if(data.Count>0){                                     
                 data.Items.forEach(function(item) {    
@@ -67,7 +73,8 @@ keyvalue.prototype.userLogin = function(email,callback){
         };      
         db.query(params,function(err,data){      
             if (err) {
-                console.error(err);
+                // console.error(err);
+                return "User not found";
             } else {                        
                 if(data.Count>0){                                     
                     data.Items.forEach(function(item) {                            
