@@ -11,16 +11,11 @@ global.customerID="";
 global.customerName="";
 global.customerEmail="";
 
-var co2;
-var co;
-var phenol;
-var ammonia;
-var tolulene;
-var propane;
+
 
 global.contaminantsArray = [6,7,8,10,0,0];
-global.historicsArray=[3.5,2,9,0,2,0];
-global.newArray=[7,7,7,7,7,8];
+global.insideArray=[3.5,2,9,0,2,0];
+global.outsideArray=[7,7,7,7,7,8];
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

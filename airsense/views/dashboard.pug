@@ -3,29 +3,21 @@ block content
     div.container
         h1 Dashboard
         div.row
-            div.col-lg-12
+            div.col-lg-6.col-md-12.col-xs-12
                 canvas(id="contaminantsChart")
-        br
-        br
-        br
-        div.row
-            div.col-lg-6
-                canvas(id="historyChart")
-            div.col-lg-6
+            div.col-lg-6.col-md-12.col-xs-12
                 canvas(id="comparisonChart")
    
     script.
-        console.log(#{array});     
-        console.log(#{array1});
-        console.log(#{array2});
-        var contaminants=#{JSON.stringify(array)}
-        var historic=#{JSON.stringify(array1)}
-        var comparison=#{JSON.stringify(array2)}
+        console.log(#{array});             
+        var contaminants=#{JSON.stringify(contaminantsArray)}     
+        var insideArray=#{JSON.stringify(insideArray)}
+        var outsideArray=#{JSON.stringify(outsideArray)}
         var cChart = document.getElementById("contaminantsChart").getContext('2d');
         var contaminantsChart = new Chart(cChart, {
             type: 'bar',
             data: {
-                labels: ['C02','CO','Phenol','Ammonium','Tolulene','Benzenne'],
+                labels: ["Ammonium", "CO", "CO2", "Benzene", "Toluene", "Phenol"],
                 datasets: [{
                     label: '#PPM',
                     data: contaminants,
@@ -58,31 +50,14 @@ block content
                 }
             }
         });
-        var hChart = document.getElementById("historyChart").getContext('2d');
-        var myPieChart = new Chart(hChart, {
-        type: 'pie',
-        data: {
-            labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
-            datasets: [
-                {
-                    data: historic,
-                    backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
-                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
-                }
-            ]
-        },
-        options: {
-            responsive: true
-        }
-        });
         var comparisonChart = document.getElementById("comparisonChart").getContext('2d');
         var comparison = new Chart(comparisonChart, {
         type: 'line',
         data: {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            labels: ["Ammonium", "CO", "CO2", "Benzene", "Toluene", "Phenol"],
             datasets: [{
                 label: "Inside",
-                data: comparison,
+                data: insideArray,
                 backgroundColor: [
                 'rgba(105, 0, 132, .2)',
                 ],
@@ -93,7 +68,7 @@ block content
             },
             {
                 label: "Outside",
-                data: [28, 48, 40, 19, 86, 27, 90],
+                data:outsideArray,
                 backgroundColor: [
                 'rgba(0, 137, 132, .2)',
                 ],

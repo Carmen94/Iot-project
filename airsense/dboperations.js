@@ -5,6 +5,9 @@ var dynamoTable = require('./keyvalue.js');
 var airsense;
 var users;
 
+const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
+var ammonium= new Array(), co=new Array(),co2=new Array(),benzene= new Array(),toluene=new Array(),phenol = new Array();
+
 function dboperations() { 
     airsense= new dynamoTable('airsense');
     users= new dynamoTable('users');
@@ -23,41 +26,52 @@ dboperations.prototype.GetUserInformation = function(email,callback){
     });  
 }
 
-dboperations.prototype.GetContaminants = function(){
+dboperations.prototype.GetContaminants = function(callback){
     airsense.init(function(){
         console.log("Aisense starting...");
     });
     customerID = global.customerID;
+    console.log(customerID);
     airsense.queryAirsense(customerID,function(err,data){
         if (err) {
-            return "Error in query dboperation.js.";
+            callback("Error in query dboperation.js.");
+            // return "Error in query dboperation.js.";
         } else if (data == null) {
-            return "No results";    
+            // return "No results";  
+            callback("No results");
         } else {                  
             data.forEach(function(element) {     
             switch(element.Type){
-                case "Ammonia":
-                ammonia=parseInt(element.Value);
+                case "Ammonium":
+                ammonium.push(parseInt(element.Value));
                 break;
-                case "Propane":
-                propane=parseInt(element.Value);
+                case "Carbon_monoxide":
+                co.push(parseInt(element.Value));
                 break;
-                case "Hydrogen":
-                ammonia=parseInt(element.Value);
+                case "Carbon_dioxide":
+                co2.push(parseInt(element.Value));
                 break;
-                case "Methane":
-                ammonia=parseInt(element.Value);
+                case "Benzene":
+                benzene.push(parseInt(element.Value));
                 break;
-                case "Oxygen":
-                ammonia=parseInt(element.Value);
+                case "Toluene":
+                toluene.push(parseInt(element.Value));
                 break;
-                case "Propane":
-                propane=parseInt(element.Value);
+                case "Phenol":
+                phenol.push(parseInt(element.Value));
                 break;
             }            
             });  
-            global.contaminantsArray = [0,0,0,ammonia,0,propane]; 
+            var ammoniumAvg=average(ammonium);
+            var coAvg=average(co);
+            var co2Avg=average(co2);
+            var benzeneAvg=average(benzene);
+            var tolueneAvg=average(toluene);
+            var phenolAvg=average(phenol);
+
+            global.contaminantsArray = [ammoniumAvg,coAvg,co2Avg,benzeneAvg,tolueneAvg,phenolAvg]; 
             console.log(global.contaminantsArray);
+            callback();
         }
     });
 }

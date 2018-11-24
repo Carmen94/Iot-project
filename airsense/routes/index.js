@@ -14,16 +14,6 @@ router.get('/logout', function(req, res, next) {
   res.render('login', { title: 'Airsense' });
 });
 
-/* GET Dashboard page. */
-router.get('/dashboard', function(req, res, next) {   
-  res.render('dashboard', { title: global.customerName+"'s dashboard",
-                            array:global.contaminantsArray,
-                            arrayLabels:global.contaminantsLabels,
-                            array1:global.historicsArray,
-                            array2:global.newArray
-                          });
-});
-
 // GET Main User Page
 router.get('/main', function(req, res, next) { 
   res.render('main',{ username: global.customerName,
@@ -75,28 +65,33 @@ router.post('/login',function(req,res){
   }
 });
 
-// router.get('/search/:id',function(req,res){
-//   customerID = req.params.id;
-//   var sensorData = new Array(); 
-//   var queryID = function(callback){
-//     airsense.query(customerID,function(err,data){
-//       if (err) {
-//         console.log("Error in query app.js: "+err);
-//       } else if (data == null) {
-//         console.log("No results");    
-//       } else {          
-//           sensorData.push(data);     
-//           callback(undefined, sensorData);
-//       }
-//     });
-//   }
-//   queryID(function(err,queryRes){
-//     if(err){
-//       res.send(JSON.stringify({"Error":err}));      
-//     }else{
-//       res.send(JSON.stringify({"Data":queryRes}));      
-//     }
-//   });
-// });
+/* GET Dashboard page. */
+router.get('/dashboard', function(req, res, next) {   
+
+  var contaminantsInfo = function(callback){
+    db.GetContaminants(function(err){    
+      if (err) {
+        console.log("Error in contaminants app.js: "+err);
+      } else {
+        callback();
+      }
+    });
+  }
+  contaminantsInfo(function(err){
+    if(err){
+      console.log(err);
+      res.render('error',{
+        message: "No data exist"
+      });
+    }else{       
+      res.render('dashboard', { title: global.customerName+"'s dashboard",
+      contaminantsArray:global.contaminantsArray,
+      arrayLabels:global.contaminantsLabels,
+      insideArray:global.insideArray,
+      outsideArray:global.outsideArray
+      });      
+    }
+  }); 
+});
 
 module.exports = router;
