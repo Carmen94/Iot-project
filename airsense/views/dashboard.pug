@@ -3,31 +3,40 @@ block content
     div.container
         h1 Dashboard
         div.row
+            center
+                table.table.co2-table(id="co2-table-th")
+                    thead   
+                        tr
+                            th Carbon Monoxide in your home
+                            th Carbon Monoxide recommended avg
+                    tbody
+                        tr
+                            td=co2+" ppm"
+                            td 350 to 1000 ppm
+        div.row
             div.col-lg-6.col-md-12.col-xs-12
                 canvas(id="contaminantsChart")
             div.col-lg-6.col-md-12.col-xs-12
                 canvas(id="comparisonChart")
    
-    script.
-        console.log(#{array});             
-        var contaminants=#{JSON.stringify(contaminantsArray)}     
-        var insideArray=#{JSON.stringify(insideArray)}
-        var outsideArray=#{JSON.stringify(outsideArray)}
-        var cChart = document.getElementById("contaminantsChart").getContext('2d');
+    script.        
+        inside=#{JSON.stringify(insideContaminants)}
+        outside=#{JSON.stringify(outsideContaminants)}      
+        cChart = document.getElementById("contaminantsChart").getContext('2d');
         var contaminantsChart = new Chart(cChart, {
             type: 'bar',
             data: {
-                labels: ["Ammonium", "CO", "CO2", "Benzene", "Toluene", "Phenol"],
+                labels: ["Ammonium", "CO","Benzene", "Toluene", "Phenol"],
                 datasets: [{
                     label: '#PPM',
-                    data: contaminants,
+                    data: inside,
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
+                        'rgba(255, 99, 132, 0.5)',
+                        'rgba(54, 162, 235, 0.5)',
+                        'rgba(255, 206, 86, 0.5)',
+                        'rgba(75, 192, 192, 0.5)',
+                        'rgba(153, 102, 255, 0.5)',
+                        'rgba(255, 159, 64, 0.5)'
                     ],
                     borderColor: [
                         'rgba(255,99,132,1)',
@@ -54,12 +63,12 @@ block content
         var comparison = new Chart(comparisonChart, {
         type: 'line',
         data: {
-            labels: ["Ammonium", "CO", "CO2", "Benzene", "Toluene", "Phenol"],
+            labels: ["Ammonium", "CO", "Benzene", "Toluene", "Phenol"],
             datasets: [{
                 label: "Inside",
-                data: insideArray,
+                data: inside,
                 backgroundColor: [
-                'rgba(105, 0, 132, .2)',
+                'rgba(206, 206, 83, .5)',
                 ],
                 borderColor: [
                 'rgba(200, 99, 132, .7)',
@@ -68,9 +77,9 @@ block content
             },
             {
                 label: "Outside",
-                data:outsideArray,
+                data: outside,
                 backgroundColor: [
-                'rgba(0, 137, 132, .2)',
+                'rgba(0, 137, 132, .5)',
                 ],
                 borderColor: [
                 'rgba(0, 10, 130, .7)',

@@ -12,10 +12,9 @@ global.customerName="";
 global.customerEmail="";
 
 
-
-global.contaminantsArray = [6,7,8,10,0,0];
-global.insideArray=[3.5,2,9,0,2,0];
-global.outsideArray=[7,7,7,7,7,8];
+global.co2;
+global.insideContaminants = [0,0,0,0,0];
+global.outsideContaminants=[0,0,0,0,0];
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -78,6 +78,11 @@ button{
   font-size:20px; 
 }
 
+.co2-table td,.co2-table th{ 
+  font-size:20px; 
+  border: 1px solid #006A00;
+}
+
 body{
   background-image: url("../img/main.jpg");
 }
@@ -88,7 +93,19 @@ body{
   text-align: left;
   background-color: #006A00;
   color: white;
+  border: 1px solid #006A00;
 }
+
+#co2-table-th th{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #006A00;
+  color: white;
+  border: 1px solid #006A00;
+}
+
+#co2-table-th td
 
 #user-table table, #user-table th, #user-table td {
   border: .5px solid black;

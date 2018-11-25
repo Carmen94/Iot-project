@@ -85,10 +85,9 @@ router.get('/dashboard', function(req, res, next) {
       });
     }else{       
       res.render('dashboard', { title: global.customerName+"'s dashboard",
-      contaminantsArray:global.contaminantsArray,
-      arrayLabels:global.contaminantsLabels,
-      insideArray:global.insideArray,
-      outsideArray:global.outsideArray
+      co2:global.co2,
+      insideContaminants:global.insideContaminants,         
+      outsideeContaminants:global.outsideContaminants
       });      
     }
   }); 
